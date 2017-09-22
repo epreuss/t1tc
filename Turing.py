@@ -1,67 +1,93 @@
 __author__ = 'Estevan'
 from enum import Enum
 
-class Movement(Enum):
-    LEFT = 0
+class Move(Enum):
+    LEFT = -1
+    NOPE = 0
     RIGHT = 1
 
     def __str__(self):
-        if self == Movement.LEFT:
+        if self == Move.LEFT:
             return "Left"
-        else:
+        elif self == Move.RIGHT:
             return "Right"
+        else:
+            return "Nope"
 
 class Transition:
-    def __init__(self, read, write, movement, targetState):
+    #read = ['', '', '']
+    #execution = ['', '', '']
+    #move = [Move, Move, Move]
+    #useMove = [False, False, False]
+
+    def __init__(self, read, operation, targetState):
         self.read = read
-        self.write = write
-        self.movement = movement
+        self.operation = operation
         self.targetState = targetState
 
     def print(self):
-        print(self.read + " -> " + self.write + ", " + self.movement.__str__())
+        print(self.read, " -> ", self.operation)
+        #print(self.read + " -> " + self.write + ", " + self.movement.__str__())
 
 class State:
     def __init__(self, transitions, final):
-        self.final = final
         self.transitions = transitions
+        self.final = final
 
-    def process(self, char):
+    def process(self, tape):
+        operations = []
         for t in self.transitions:
-            if t.read == char:
-                return (t.write, t.movement, t.targetState)
-        print("ERROR: State process fail")
+            for i in range(0, 3):
+                if t.read[i] == tape.getChar(i) or t.read[i] == '/':
+                    operations.append(t.operation[i])
+                else:
+                    operations.append(0)
+        return operations
+
+    def getTargetState(self):
+        return self.transitions[0].targetState
 
     def isFinal(self):
         return self.final
 
 class Tape:
-    pos = 0
-    chars = ""
+    pos = [0, 0, 0]
+    chars = ["", "", ""]
 
-    def __init__(self, chars, startPos):
+    def __init__(self, chars):
         self.chars = chars
-        self.pos = startPos
 
     def print(self):
         print(self.chars)
+        print(self.pos)
 
-    def getChar(self):
-        return self.chars[self.pos]
+    def getChar(self, index):
+        toList = list(self.chars[index])
+        return toList[self.pos[index]]
 
-    def write(self, char):
-        toList = list(self.chars)
-        toList[self.pos] = char
-        self.chars = ''.join(toList)
+    def write(self, index, char):
+        toList = list(self.chars[index])
+        toList[self.pos[index]] = char
+        self.chars[index] = ''.join(toList)
 
-    def move(self, movement):
-        if movement == Movement.LEFT:
-            self.pos -= 1
-        else:
-            self.pos += 1
+    def move(self, index, move):
+        if move == Move.LEFT._value_:
+            self.pos[index] -= 1
+        elif move == Move.RIGHT._value_:
+            self.pos[index] += 1
+
+    def execute(self, operations):
+        i = 0
+        for o in operations:
+            if type(o) == str:
+                self.write(i, o)
+            elif type(o) == int:
+                self.move(i, o)
+            i += 1
 
 class Turing:
     currState = State
+    stateId = 0
 
     def __init__(self, tape, states):
         self.tape = tape
@@ -69,23 +95,42 @@ class Turing:
         self.currState = states[0]
 
     def print(self):
-        print("Turing")
+        self.tape.print()
+        print("Curr State: ", self.stateId)
 
     def process(self):
+        self.print()
+        print()
         while not self.currState.isFinal():
-            result = self.currState.process(tape.getChar())
-            tape.write(result[0])
-            tape.move(result[1])
-            self.changeState(result[2])
-            print(result)
-        tape.print()
+            operations = self.currState.process(self.tape)
+            self.tape.execute(operations)
+            self.changeState(self.currState.getTargetState())
+            self.print()
+            print()
 
     def changeState(self, stateId):
+        self.stateId = stateId
         self.currState = self.states[stateId]
 
 
-q0t0 = Transition('1', '1', Movement.RIGHT, 0)
-q0t1 = Transition('x', '1', Movement.LEFT, 1)
+q0t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], 1)
+q1t0 = Transition(['/', '/', 'B'], [1, 1, 'B'], 2)
+q2t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], 3)
+
+q0 = State([q0t0], False)
+q1 = State([q1t0], False)
+q2 = State([q2t0], False)
+q3 = State([], True)
+
+tape3 = Tape(["00", "BB", "BB"])
+
+turing = Turing(tape3, [q0, q1, q2, q3])
+turing.process()
+#turing.print()
+
+"""
+q0t0 = Transition('1', '1', Move.RIGHT, 0)
+q0t1 = Transition('x', '1', Move.LEFT, 1)
 
 q0 = State([q0t0, q0t1], False)
 q1 = State([], True)
@@ -94,3 +139,4 @@ tape = Tape("xx11xx", 2)
 
 turing = Turing(tape, [q0, q1])
 turing.process()
+"""
