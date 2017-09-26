@@ -1,0 +1,7 @@
+O parser coloca as transacoes em uma classe quadruplas ao inves de colocar na turing direto.
+
+Antes de colocar na turing a gente tem que fazer as modificiacoes pra ela ficar reversivel,
+e fica mais facil fazer isso a partir dela
+
+Antes nas transacoes tu tava usando int pra estados e string pra o que escrever. Isso pq era ambiguo os 0.
+Mas agora nao eh mais e tudo virou string.

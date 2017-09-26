@@ -1,5 +1,7 @@
 __author__ = 'Estevan'
 from enum import Enum
+from Parser import Parser
+
 
 class Move(Enum):
     LEFT = -1
@@ -13,6 +15,7 @@ class Move(Enum):
             return "Right"
         else:
             return "Nope"
+
 
 class Transition:
     #read = ['', '', '']
@@ -28,6 +31,7 @@ class Transition:
     def print(self):
         print(self.read, " -> ", self.operation)
         #print(self.read + " -> " + self.write + ", " + self.movement.__str__())
+
 
 class State:
     def __init__(self, transitions, final):
@@ -49,6 +53,7 @@ class State:
 
     def isFinal(self):
         return self.final
+
 
 class Tape:
     pos = [0, 0, 0]
@@ -84,6 +89,7 @@ class Tape:
             elif type(o) == int:
                 self.move(i, o)
             i += 1
+
 
 class Turing:
     currState = State
@@ -124,11 +130,11 @@ q3 = State([], True)
 
 tape3 = Tape(["00", "BB", "BB"])
 
+"""
 turing = Turing(tape3, [q0, q1, q2, q3])
 turing.process()
-#turing.print()
+turing.print()
 
-"""
 q0t0 = Transition('1', '1', Move.RIGHT, 0)
 q0t1 = Transition('x', '1', Move.LEFT, 1)
 
