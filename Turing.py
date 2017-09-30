@@ -1,7 +1,7 @@
 __author__ = 'Estevan'
 from enum import Enum
 from Parser import Parser
-
+import time
 
 class Move(Enum):
     LEFT = -1
@@ -34,7 +34,8 @@ class Transition:
 
 
 class State:
-    def __init__(self, transitions, final):
+    def __init__(self, name, transitions, final):
+        self.name = name;
         self.transitions = transitions
         self.final = final
 
@@ -114,35 +115,43 @@ class Turing:
             self.print()
             print()
 
+    def findStateByName(self, name):
+        for s in self.states:
+            if s.name == name:
+                return s;
+        print("State " + name + "not found in transitions.")
+        return None
+
     def changeState(self, stateId):
         self.stateId = stateId
-        self.currState = self.states[stateId]
+        self.currState = self.findStateByName(stateId)
+        # self.currState = self.states[stateId]
 
 
-q0t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], 1)
-q1t0 = Transition(['/', '/', 'B'], [1, 1, 'B'], 2)
-q2t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], 3)
+q0t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], "1")
+q1t0 = Transition(['/', '/', 'B'], [1, 1, 'B'], "2")
+q2t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], "3")
 
-q0 = State([q0t0], False)
-q1 = State([q1t0], False)
-q2 = State([q2t0], False)
-q3 = State([], True)
+q0 = State("0", [q0t0], False)
+q1 = State("1", [q1t0], False)
+q2 = State("2", [q2t0], False)
+q3 = State("3", [], True)
 
 tape3 = Tape(["00", "BB", "BB"])
 
-"""
+
 turing = Turing(tape3, [q0, q1, q2, q3])
 turing.process()
 turing.print()
 
+'''
 q0t0 = Transition('1', '1', Move.RIGHT, 0)
 q0t1 = Transition('x', '1', Move.LEFT, 1)
 
 q0 = State([q0t0, q0t1], False)
 q1 = State([], True)
-
 tape = Tape("xx11xx", 2)
 
 turing = Turing(tape, [q0, q1])
 turing.process()
-"""
+'''

@@ -52,10 +52,11 @@ class Quadruple:
         print("Operations: ", end='')
         print(self.operations)
 
-
+'''
 turing = Parser.Parse("entry.txt")
 print("Input: " + turing[0] + "\n")
 print("Tuples:")
 for quadruple in turing[1]:
     print("") # new line
     quadruple.print()
+'''
