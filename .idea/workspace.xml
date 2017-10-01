@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="289db60a-e82a-4300-a92b-6227bc0250e6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/entry.txt" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Parser.py" afterPath="$PROJECT_DIR$/Parser4.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Parser.py" afterPath="$PROJECT_DIR$/Parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Turing.py" afterPath="$PROJECT_DIR$/Turing.py" />
     </list>
     <ignored path="t1tc.iws" />
@@ -24,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Turing.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Turing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Turing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="121" column="59" lean-forward="false" selection-start-line="121" selection-start-column="59" selection-end-line="121" selection-end-column="59" />
+            <state relative-caret-position="-2128">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#23#44#0" expanded="true" />
               </folding>
@@ -36,23 +37,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Parser.py">
+      <file leaf-file-name="Parser4.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Parser4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="54" column="3" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
+            <state relative-caret-position="511">
+              <caret line="53" column="8" lean-forward="false" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
               <folding>
-                <marker date="1506780258470" expanded="true" signature="1786:1953" ph="..." />
+                <marker date="1506805470594" expanded="true" signature="1819:1961" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entry.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/entry.txt">
+      <file leaf-file-name="Parser5.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Parser5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="568">
+              <caret line="71" column="27" lean-forward="true" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Converter.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Converter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="45" column="34" lean-forward="true" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -81,6 +94,9 @@
       <list>
         <option value="$PROJECT_DIR$/Parser.py" />
         <option value="$PROJECT_DIR$/Turing.py" />
+        <option value="$PROJECT_DIR$/Parser4.py" />
+        <option value="$PROJECT_DIR$/Parser5.py" />
+        <option value="$PROJECT_DIR$/Converter.py" />
       </list>
     </option>
   </component>
@@ -143,11 +159,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
   </component>
-  <component name="RunManager" selected="Python.Turing">
+  <component name="RunManager" selected="Python.Converter">
     <configuration default="false" name="Turing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -161,6 +177,40 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="t1tc" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Turing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Parser5" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="t1tc" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parser5.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Converter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="t1tc" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Converter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -299,12 +349,16 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.Turing" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Parser5" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Converter" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.Turing" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.Converter" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Parser5" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Turing" />
       </list>
     </recent_temporary>
   </component>
@@ -330,10 +384,10 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15989584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3284055" sideWeight="0.5083333" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5976769" sideWeight="0.5104167" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3284055" sideWeight="0.49166667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5976769" sideWeight="0.48958334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -374,12 +428,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Parser.py">
+    <entry file="file://$PROJECT_DIR$/Parser4.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
           <caret line="57" column="3" lean-forward="false" selection-start-line="57" selection-start-column="3" selection-end-line="57" selection-end-column="3" />
           <folding>
-            <marker date="1506780258470" expanded="true" signature="1786:1953" ph="..." />
+            <marker date="1506805470594" expanded="true" signature="1819:1961" ph="..." />
           </folding>
         </state>
       </provider>
@@ -402,12 +456,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Parser.py">
+    <entry file="file://$PROJECT_DIR$/Parser4.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1506780258470" expanded="true" signature="1786:1953" ph="..." />
+            <marker date="1506805470594" expanded="true" signature="1819:1961" ph="..." />
           </folding>
         </state>
       </provider>
@@ -458,23 +512,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Parser.py">
+    <entry file="file://$PROJECT_DIR$/Turing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="3" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
+        <state relative-caret-position="-2128">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <marker date="1506780258470" expanded="true" signature="1786:1953" ph="..." />
+            <element signature="e#23#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Turing.py">
+    <entry file="file://$PROJECT_DIR$/Parser4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="121" column="59" lean-forward="false" selection-start-line="121" selection-start-column="59" selection-end-line="121" selection-end-column="59" />
+        <state relative-caret-position="511">
+          <caret line="53" column="8" lean-forward="false" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
           <folding>
-            <element signature="e#23#44#0" expanded="true" />
+            <marker date="1506805470594" expanded="true" signature="1819:1961" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Parser5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="71" column="27" lean-forward="true" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Converter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="45" column="34" lean-forward="true" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,6 +1,6 @@
 __author__ = 'Estevan'
 from enum import Enum
-from Parser import Parser
+from Parser4 import Parser4
 import time
 
 class Move(Enum):
@@ -15,6 +15,14 @@ class Move(Enum):
             return "Right"
         else:
             return "Nope"
+
+    def inverse(self):
+        if self == Move.LEFT:
+            return Move.RIGHT
+        elif self == Move.RIGHT:
+            return Move.LEFT
+        else:
+            return Move.NOPE
 
 
 class Transition:
@@ -128,6 +136,7 @@ class Turing:
         # self.currState = self.states[stateId]
 
 
+'''
 q0t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], "1")
 q1t0 = Transition(['/', '/', 'B'], [1, 1, 'B'], "2")
 q2t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], "3")
@@ -144,7 +153,6 @@ turing = Turing(tape3, [q0, q1, q2, q3])
 turing.process()
 turing.print()
 
-'''
 q0t0 = Transition('1', '1', Move.RIGHT, 0)
 q0t1 = Transition('x', '1', Move.LEFT, 1)
 
