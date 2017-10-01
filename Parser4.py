@@ -1,13 +1,13 @@
 import re # Regex
 
-class Parser:
+class Parser4:
 
     @staticmethod
     # Returns an heterogeneous list. The first element is the input and the second is the quadruples
     def Parse(path):
         lines = open(path, "r").read().split('\n')
-        machineInput = Parser.ParseInput(lines)
-        quadruples = Parser.ParseQuadruples(lines)
+        machineInput = Parser4.ParseInput(lines)
+        quadruples = Parser4.ParseQuadruples(lines)
         return [machineInput, quadruples]
 
 
@@ -22,7 +22,7 @@ class Parser:
         # Lines from 0 to 3 are useless
         # We want lines from 4 until the second to last
         for i in range (4, file.__len__() - 1):
-            q = Parser.ParseSingleQuadruple(file[i])
+            q = Parser4.ParseSingleQuadruple(file[i])
             quadruples.append(q)
         return quadruples
 
@@ -51,12 +51,12 @@ class Quadruple:
         print(self.read)
         print("Operations: ", end='')
         print(self.operations)
+        print("") # new line
 
 '''
 turing = Parser.Parse("entry.txt")
 print("Input: " + turing[0] + "\n")
 print("Tuples:")
 for quadruple in turing[1]:
-    print("") # new line
     quadruple.print()
 '''
