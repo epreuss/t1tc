@@ -37,27 +37,49 @@ class State:
     def __init__(self, transitions, final):
         self.transitions = transitions
         self.final = final
+        self.lastChosenTransition = 0
+
+    def getCorrectTransition(self, tape):
+        correctCount = []
+        countIndex = 0
+        for t in self.transitions:
+            correctCount.append(0)
+            for i in range(0, 3):
+                if t.read[i] == tape.getChar(i) or t.read[i] == '/':
+                    correctCount[countIndex] += 1
+            countIndex += 1
+
+        biggest = correctCount[0]
+        targetIndex = 0
+        for i in range(0, correctCount.__len__()):
+            if correctCount[i] > biggest:
+                biggest = correctCount[i]
+                targetIndex = i
+
+        print("chosen tran: ", targetIndex)
+        self.lastChosenTransition = targetIndex
+        return self.transitions[targetIndex]
 
     def process(self, tape):
         operations = []
-        for t in self.transitions:
-            for i in range(0, 3):
-                if t.read[i] == tape.getChar(i) or t.read[i] == '/':
-                    operations.append(t.operation[i])
-                else:
-                    operations.append(0)
+        t = self.getCorrectTransition(tape)
+        for i in range(0, 3):
+            if t.read[i] == tape.getChar(i) or t.read[i] == '/':
+                operations.append(t.operation[i])
+            else:
+                operations.append(0)
         return operations
 
     def getTargetState(self):
-        return self.transitions[0].targetState
+        return self.transitions[self.lastChosenTransition].targetState
 
     def isFinal(self):
         return self.final
 
 
 class Tape:
-    pos = [0, 0, 0]
-    chars = ["", "", ""]
+    #pos = [0, 0, 0]
+    #chars = ["", "", ""]
 
     def __init__(self, chars):
         self.chars = chars
@@ -65,6 +87,9 @@ class Tape:
     def print(self):
         print(self.chars)
         print(self.pos)
+
+    def setInitialPos(self, initial):
+        self.pos = initial
 
     def getChar(self, index):
         toList = list(self.chars[index])
@@ -109,6 +134,7 @@ class Turing:
         print()
         while not self.currState.isFinal():
             operations = self.currState.process(self.tape)
+            print("OP: ", operations)
             self.tape.execute(operations)
             self.changeState(self.currState.getTargetState())
             self.print()
@@ -118,31 +144,42 @@ class Turing:
         self.stateId = stateId
         self.currState = self.states[stateId]
 
-
+# Base
 q0t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], 1)
 q1t0 = Transition(['/', '/', 'B'], [1, 1, 'B'], 2)
 q2t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], 3)
 
+# Copy
+"""
+Algoritmo de copia:
+- Voltar o ponteiro da fita 1 para o inicio, ate encontrar um vazio.
+c3t0: Volta a fita 1 para o inicio.
+c3t1: Seta o ponteiro para iniciar a copia.
+c4t0: Copia o x para a fita 3.
+c5t0: Avanca o ponteira da fita 1 e 3.
+c4t1: Ao encontrar um vazio na fita 1, acaba.
+"""
+c3t0 = Transition(['x', '/', '/'], [-1, 0, 0], 3)
+c3t1 = Transition(['B', '/', '/'], [1, 0, 0], 4)
+c4t0 = Transition(['x', '/', 'B'], ['x', 0, 'x'], 5)
+c4t1 = Transition(['B', '/', '/'], [0, 0, 0], 6)
+c5t0 = Transition(['/', '/', '/'], [1, 0, 1], 4)
+
+
 q0 = State([q0t0], False)
 q1 = State([q1t0], False)
 q2 = State([q2t0], False)
-q3 = State([], True)
 
-tape3 = Tape(["00", "BB", "BB"])
+c3 = State([c3t0, c3t1], False)
+c4 = State([c4t0, c4t1], False)
+c5 = State([c5t0], False)
+c6 = State([], True)
 
-"""
-turing = Turing(tape3, [q0, q1, q2, q3])
+tape3 = Tape(["BB00BB", "BBBBBB", "BBBBBB"])
+tape3.setInitialPos([2, 0, 0])
+
+turing = Turing(tape3, [q0, q1, q2, c3, c4, c5, c6])
 turing.process()
+print("================RESULT================")
 turing.print()
 
-q0t0 = Transition('1', '1', Move.RIGHT, 0)
-q0t1 = Transition('x', '1', Move.LEFT, 1)
-
-q0 = State([q0t0, q0t1], False)
-q1 = State([], True)
-
-tape = Tape("xx11xx", 2)
-
-turing = Turing(tape, [q0, q1])
-turing.process()
-"""
