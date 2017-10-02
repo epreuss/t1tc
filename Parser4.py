@@ -1,4 +1,5 @@
 import re # Regex
+from Turing import *
 
 class Parser4:
 
@@ -21,7 +22,7 @@ class Parser4:
         quadruples = []
         # Lines from 0 to 3 are useless
         # We want lines from 4 until the second to last
-        for i in range (4, file.__len__() - 1):
+        for i in range(4, file.__len__() - 1):
             q = Parser4.ParseSingleQuadruple(file[i])
             quadruples.append(q)
         return quadruples
@@ -43,6 +44,24 @@ class Quadruple:
         self.stateTo = stateTo
         self.read = read
         self.operations = operations
+
+    @staticmethod
+    def quadruplesToStates(quadruples):
+        states = []
+        for q in quadruples:
+            # find the state of the current transition
+            state = State.findStateByName(q.stateFrom, states)
+            # if it didn't exist we create it
+            if state is None:
+                state = State(q.stateFrom, [], quadruples[-1] == q)  # the state is final if it is the last element
+            # create the transition and add it to the state
+            transition = Transition(q.read, q.operations, q.stateTo)
+            state.addTransition(transition)
+            states.append(state)
+        return states
+
+
+
 
     def print (self):
         print ("State from: " + self.stateFrom)

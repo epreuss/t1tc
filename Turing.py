@@ -1,7 +1,5 @@
-__author__ = 'Estevan'
 from enum import Enum
-from Parser4 import Parser4
-import time
+__author__ = 'Estevan'
 
 class Move(Enum):
     LEFT = -1
@@ -23,7 +21,12 @@ class Transition:
         self.targetState = targetState
 
     def print(self):
-        print(self.read, " -> ", self.operation)
+        # print(self.read, " -> ", self.operation)
+        print("Read: ", end='')
+        print(self.read)
+        print("Operations: ", end='')
+        print(self.operation)
+        print("Target state: " + self.targetState)
 
 class State:
     def __init__(self, name, transitions, final):
@@ -61,6 +64,28 @@ class State:
             else:
                 operations.append(0)
         return operations
+
+    def addTransition(self, transition):
+        self.transitions.append(transition)
+
+    @staticmethod
+    def findStateByName(name, states):
+        for s in states:
+            if s.name == name:
+                return s
+        return None
+
+    def print(self):
+        print("Name: " + self.name)
+        print("Final: " + str(self.isFinal()))
+        print("Transitions:")
+        i = 1
+        for t in self.transitions:
+            print("--------------------")
+            print("Transition " + str(i))
+            t.print()
+            i += 1
+        print("--------------------")
 
     def getTargetState(self):
         return self.transitions[self.lastChosenTransition].targetState
@@ -127,24 +152,18 @@ class Turing:
             self.print()
             print()
 
-    def findStateByName(self, name):
-        for s in self.states:
-            if s.name == name:
-                return s;
-        print("State " + name + "not found in transitions.")
-        return None
-
     def changeState(self, stateId):
         self.stateId = stateId
-        self.currState = self.findStateByName(stateId)
+        self.currState = State.findStateByName(stateId, self.states)
 
+
+"""
 # Base
 q0t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], "1")
 q1t0 = Transition(['/', '/', 'B'], [1, 1, 'B'], "2")
 q2t0 = Transition(['0', 'B', 'B'], ['x', 0, 'B'], "3")
 
 # Copy
-"""
 Algoritmo de copia:
 - Voltar o ponteiro da fita 1 para o inicio, ate encontrar um vazio.
 c3t0: Volta a fita 1 para o inicio.
@@ -152,7 +171,6 @@ c3t1: Seta o ponteiro para iniciar a copia.
 c4t0: Copia o x para a fita 3.
 c5t0: Avanca o ponteira da fita 1 e 3.
 c4t1: Ao encontrar um vazio na fita 1, acaba.
-"""
 c3t0 = Transition(['x', '/', '/'], [-1, 0, 0], "3")
 c3t1 = Transition(['B', '/', '/'], [1, 0, 0], "4")
 c4t0 = Transition(['x', '/', 'B'], ['x', 0, 'x'], "5")
@@ -175,3 +193,4 @@ turing = Turing(tape3, [q0, q1, q2, c3, c4, c5, c6])
 turing.process()
 print("================RESULT================")
 turing.print()
+"""

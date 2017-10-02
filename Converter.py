@@ -65,8 +65,15 @@ class Converter:
         return [c1, c2]
 
 
+quadruples = [Quadruple("s1", "s2", ["a", "b", "c"], ["A", "B", "C"])]
+a = Quadruple.quadruplesToStates(quadruples)
+
+a[0].print()
+
+"""
 turing = Parser5.Parse("entry5.txt")
 tuples = Converter.reverse(turing[1])
 
 for t in tuples:
     t.print()
+"""

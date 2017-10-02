@@ -1,6 +1,4 @@
-import re
 from Parser4 import *
-from Turing import Move
 
 class Parser5:
 
@@ -9,7 +7,7 @@ class Parser5:
     def Parse(path):
         lines = open(path, "r").read().split('\n')
         machineInput = Parser5.ParseInput(lines)
-        quadruples = Parser5.ParseQuadruples(lines)
+        quadruples = Parser5.parseQuintuples(lines)
         return [machineInput, quadruples]
 
 
@@ -19,11 +17,11 @@ class Parser5:
         return file[file.__len__() - 1]
 
     @staticmethod
-    def ParseQuadruples(file):
+    def parseQuintuples(file):
         quintuples = []
         # Lines from 0 to 3 are useless
         # We want lines from 4 until the second to last
-        for i in range (4, file.__len__() - 1):
+        for i in range(4, file.__len__() - 1):
             q = Parser5.ParseSingleQuintuple(file[i])
             quintuples.append(q)
         return quintuples
