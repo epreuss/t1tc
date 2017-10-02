@@ -47,6 +47,7 @@ class Quintuple:
         else:
             movement = Move.NOPE
         self.movement = movement
+        self.print()
 
     def print(self):
         print("State from: " + self.stateFrom)

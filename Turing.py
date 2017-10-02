@@ -14,6 +14,15 @@ class Move(Enum):
         else:
             return "Nope"
 
+    @staticmethod
+    def inverse(self):
+        if self == Move.LEFT:
+            return 1
+        elif self == Move.RIGHT:
+            return -1
+        else:
+            return 0
+
 class Transition:
     def __init__(self, read, operation, targetState):
         self.read = read
@@ -127,6 +136,8 @@ class Tape:
                 self.write(i, o)
             elif type(o) == int:
                 self.move(i, o)
+            elif type(o) == Move:
+                self.move(i, o)
             i += 1
 
 class Turing:
@@ -147,8 +158,11 @@ class Turing:
         print()
         while not self.currState.isFinal():
             operations = self.currState.process(self.tape)
+            print(self.currState.print())
+            print(self.currState.lastChosenTransition + 1)
             self.tape.execute(operations)
             self.changeState(self.currState.getTargetState())
+            print()
             self.print()
             print()
 
