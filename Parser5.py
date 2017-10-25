@@ -3,12 +3,13 @@ from Parser4 import *
 class Parser5:
 
     @staticmethod
-    # Returns an heterogeneous list. The first element is the input and the second is the quintuples
+    # Returns an heterogeneous list. The first element is the input and the second
+    # is the quintuples and the third is the alphabet.
     def Parse(path):
         lines = open(path, "r").read().split('\n')
         machineInput = Parser5.ParseInput(lines)
         quadruples = Parser5.parseQuintuples(lines)
-        return [machineInput, quadruples]
+        return [machineInput, quadruples, lines[3]]
 
 
     @staticmethod

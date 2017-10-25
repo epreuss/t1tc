@@ -3,12 +3,12 @@ from Parser5 import *
 
 class Converter:
     @staticmethod
-    def reverse(quintuples):
+    def reverse(quintuples, alphabet):
         result = []
         result += Converter.getCompute1(quintuples)
         result += Converter.getComputeM(quintuples)
         result += Converter.getComputeN(quintuples)
-        result += Converter.getCopyOutput()
+        result += Converter.getCopyOutput(alphabet)
         result += Converter.getRetraceN(quintuples)
         result += Converter.getRetraceM(quintuples)
         result += Converter.getRetrace1(quintuples)
@@ -42,18 +42,26 @@ class Converter:
         return [af1, af2]
 
     @staticmethod
-    def getCopyOutput():
-        c = 'y'
+    def getCopyOutput(alphabet):
+        # c = 'y'
         # Af volta em um passo a primeira fita caso ela fique em cima de um B.
         aft0 = Quadruple("Af", "B0", ['B', '/', '/'], [-1, 0, 0])
-        b0t0 = Quadruple("B0", "B0", [c, '/', '/'], [-1, 0, 0])
+        #b0t0 = Quadruple("B0", "B0", [c, '/', '/'], [-1, 0, 0])
         b0t1 = Quadruple("B0", "B1", ['B', '/', '/'], [1, 0, 0])
-        b1t0 = Quadruple("B1", "B2", [c, '/', 'B'], [c, 0, c])
+        #b1t0 = Quadruple("B1", "B2", [c, '/', 'B'], [c, 0, c])
         b1t1 = Quadruple("B1", "B3", ['B', '/', '/'], [0, 0, 0])
         b2t0 = Quadruple("B2", "B1", ['/', '/', '/'], [1, 0, 1])
         b3t0 = Quadruple("B3", "Cf", ['/', '/', '/'], [0, 0, 0])
 
-        return [aft0, b0t0, b0t1, b1t0, b1t1, b2t0, b3t0]
+        chars = alphabet.split(' ')
+        copy_transitions = []
+        for c in chars:
+            t1 = Quadruple("B0", "B0", [c[0], '/', '/'], [-1, 0, 0])
+            t2 = Quadruple("B1", "B2", [c[0], '/', 'B'], [c[0], 0, c[0]])
+            copy_transitions += [t1, t2]
+
+        #return [aft0, b0t0, b0t1, b1t0, b1t1, b2t0, b3t0]
+        return [aft0, b0t1,  b1t1, b2t0, b3t0] + copy_transitions
 
     @staticmethod
     def getRetrace1(quintuples):
@@ -81,10 +89,11 @@ class Converter:
 
 
 parseResult = Parser5.Parse("entry5.txt")
-quadruples = Converter.reverse(parseResult[1])
+alphabet = parseResult[2]
+quadruples = Converter.reverse(parseResult[1], alphabet)
 states = Quadruple.quadruplesToStates(quadruples)
 
-tape3 = Tape(["BxxxBBBBBB", "BBBBBBBBBB", "BBBBBBBBBB"])
+tape3 = Tape(["B" + parseResult[0] + "BBBBBB", "BBBBBBBBBB", "BBBBBBBBBB"])
 tape3.setInitialPos([0, 0, 1])
 
 turing = Turing(tape3, states)
